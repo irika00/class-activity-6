@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :festivals do
     resources :stages
   end
-
+end
   # ---------- Pair B: Artist -> Track (use shallow nesting) ----------
   # Q1: List tracks of one artist: GET /artists/:artist_id/tracks
   # Q2: Parent id param: :artist_id 
@@ -37,6 +37,12 @@ Rails.application.routes.draw do
 
 
   # ---------- Integrator: Stage / Artist -> Performance ----------
+  resources :stages do
+    resources :performances
+  end
+  resources :artists do
+    resources :performances
+  end
 
 
 
