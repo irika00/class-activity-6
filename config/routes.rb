@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 # Q2. Which route parameter holds the parent's id?
 #     :festival_id. Inside the nested routes, :id is reserved for the stage
 #     itself (e.g. /festivals/1/stages/7 has festival_id=1 and id=7).
+
   resources :festivals do
     resources :stages
   end
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
 
 
   # ---------- Integrator: Stage / Artist -> Performance ----------
+
 
 
 end
