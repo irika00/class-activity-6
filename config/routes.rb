@@ -26,6 +26,12 @@ Rails.application.routes.draw do
 
 
   # ---------- Integrator: Stage / Artist -> Performance ----------
+  resources :stages do
+    resources :performances
+  end
+  resources :artists do
+    resources :performances
+  end
 
 
 
