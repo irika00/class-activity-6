@@ -10,12 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_01_000400) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_01_000500) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "attendees", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "festivals", force: :cascade do |t|
+    t.string "name"
+    t.date "starts_on"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stages", force: :cascade do |t|
+    t.string "name"
+    t.integer "capacity"
+    t.integer "festival_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["festival_id"], name: "index_stages_on_festival_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -27,5 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_01_000400) do
     t.index ["artist_id"], name: "index_tracks_on_artist_id"
   end
 
+  add_foreign_key "stages", "festivals"
   add_foreign_key "tracks", "artists"
 end
