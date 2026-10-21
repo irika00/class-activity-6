@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
 
   # ---------- Pair B: Artist -> Track (use shallow nesting) ----------
-
+  resources :artists, shallow: true do
+    resources :tracks
+  end
 
 
   # ---------- Pair C: Attendee -> Ticket (and Festival -> Ticket) ----------
