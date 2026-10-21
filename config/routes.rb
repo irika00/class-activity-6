@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 #     :festival_id. Inside the nested routes, :id is reserved for the stage
 #     itself (e.g. /festivals/1/stages/7 has festival_id=1 and id=7).
 
-Rails.application.routes.draw do
   resources :festivals do
     resources :stages
   end
@@ -32,7 +31,9 @@ end
 
 
   # ---------- Pair C: Attendee -> Ticket (and Festival -> Ticket) ----------
-
+  resources :attendees do
+    resources :tickets
+  end
 
 
   # ---------- Integrator: Stage / Artist -> Performance ----------
