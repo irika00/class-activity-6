@@ -12,22 +12,30 @@ Rails.application.routes.draw do
 # Q2. Which route parameter holds the parent's id?
 #     :festival_id. Inside the nested routes, :id is reserved for the stage
 #     itself (e.g. /festivals/1/stages/7 has festival_id=1 and id=7).
-
-Rails.application.routes.draw do
   resources :festivals do
     resources :stages
   end
-end
-  # ---------- Pair B: Artist -> Track (use shallow nesting) ----------
 
+  # ---------- Pair B: Artist -> Track (use shallow nesting) ----------
+  # Q1: List tracks of one artist: GET /artists/:artist_id/tracks
+  # Q2: Parent id param: :artist_id 
+  # Q3: With shallow: true, index/create stay nested under
+  #     /artists/:artist_id/tracks, while show/update/destroy become
+  #     /tracks/:id. A track's id is already unique, so once a track
+  #     exists we don't need the artist id to find it. The artist id
+  #     is only needed to list an artist's tracks or create a new one.
+  resources :artists, shallow: true do
+    resources :tracks
+  end
 
 
   # ---------- Pair C: Attendee -> Ticket (and Festival -> Ticket) ----------
-
+  resources :attendees do
+    resources :tickets
+  end
 
 
   # ---------- Integrator: Stage / Artist -> Performance ----------
-
 
 
 end
